@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.winter.app.board.BoardDAO">
+    	<select id="list" resultType="com.winter.app.board.BoardDTO">
+    		SELECT * FROM board ORDER BY num DESC
+    	</select>
+    	
+    	<!-- 상세 정보조회 -->
+    	<select id="detail" resultType="com.winter.app.board.BoardDTO" parameterType="com.winter.app.board.BoardDTO">
+    		SELECT * FROM board WHERE num=#{num}
+    	</select>
+    	<!-- 추가 -->
+    	<insert id="add" parameterType="com.winter.app.board.BoardDTO">
+    		INSERT INTO board (title, writer, contents, date, hit) 
+    		VALUES(#{title}, #{writer}, #{contents}, now(), 0)
+    	</insert>
+    	
+    	<!-- 삭제 -->
+    	<delete id="delete" parameterType="Long">
+    		DELETE FROM board WHERE num=#{num2}
+    	</delete>
+    	
+    	<!-- 업데이트 -->
+    	<update id="update" parameterType="java.util.Map">
+    		UPDATE board SET title=#{t}, contents=#{c}
+    		WHERE num=#{n} 
+    	</update>
+    </mapper>
