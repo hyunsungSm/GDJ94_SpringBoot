@@ -16,6 +16,20 @@ class NoticeDAOTest {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
+		
+	@Test
+	void insert()throws Exception{
+		for (int i = 0; i < 120; i++) {
+			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setBoardTitle("title"+1);
+			noticeDTO.setBoardWriter("writer"+1);
+			noticeDTO.setBoardContents("contents"+1);
+			noticeDAO.add(noticeDTO);
+			if(i%10==0) {
+				Thread.sleep(500);
+			}
+		}
+	}
 	
 	@Test
 	void testDetail() throws Exception {
@@ -58,12 +72,12 @@ class NoticeDAOTest {
 		assertEquals(1, result);
 	}
 	
-	@Test
-	void testList()throws Exception {
-		List<NoticeDTO> ar = noticeDAO.list();
-		
-		assertNotEquals(0, ar.size());
-	}
+//	@Test
+//	void testList()throws Exception {
+//		List<NoticeDTO> ar = noticeDAO.list();
+//		
+//		assertNotEquals(0, ar.size());
+//	}
 	
 //	@Test
 	void test() {

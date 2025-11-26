@@ -24,7 +24,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">공지사항</h1>
+                        <h1 class="h3 mb-0 text-gray-800">QnA</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -41,6 +41,9 @@
 				                            <th>작성자</th>
 				                            <th>작성일</th>
 				                            <th>조회수</th>
+				                            <th>그룹</th>
+				                            <th>순서</th>
+				                            <th>들여쓰기</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
@@ -51,6 +54,9 @@
 				                                <td>${n.boardWriter}</td>
 				                                <td>${n.boardDate}</td>
 				                                <td>${n.boardHit}</td>
+				                                <td>${n.boardRef}</td>
+				                                <td>${n.boardStep}</td>
+				                                <td>${n.boardDepth}</td>
 				                            </tr>
 				                        </c:forEach>
 				                    </tbody>

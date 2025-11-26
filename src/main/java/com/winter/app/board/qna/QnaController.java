@@ -1,4 +1,4 @@
-package com.winter.app.board.notice;
+package com.winter.app.board.qna;
 
 import java.util.List;
 
@@ -7,28 +7,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.winter.app.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/notice/*")
+@RequestMapping("/qna/*")
 @Slf4j
-public class NoticeController {
+public class QnaController {
 
 	@Autowired
-	private NoticeService noticeService;
+	private QnaService qnaService;
 	
 	@GetMapping("list")
-	public String list(Pager pager, Model model)throws Exception{
-		List<NoticeDTO> ar = noticeService.list(pager);
+	public String list(Pager pager, Model model) throws Exception{
+		List<QnaDTO> ar = qnaService.list(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
-		return "notice/list";
+		return "qna/list";
 	}
-	
-	
 }

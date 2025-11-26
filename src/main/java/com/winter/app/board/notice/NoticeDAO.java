@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.winter.app.util.Pager;
+
 @Mapper
 public interface NoticeDAO {
 
@@ -21,5 +23,7 @@ public interface NoticeDAO {
 	public int update(Map<String, Object> map) throws Exception;
 	
 	// 리스트
-	public List<NoticeDTO> list()throws Exception;
+	public List<NoticeDTO> list(Pager pager)throws Exception;
+	
+	public Long count()throws Exception;
 }
