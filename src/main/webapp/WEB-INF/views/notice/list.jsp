@@ -29,6 +29,27 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                     
+					<form action="${pageContext.request.contextPath}/notice/list" method="get"
+					      class="row mb-3" style="display:flex; align-items:center;">
+					    
+					    <div style="margin-right:10px;">
+					        <select name="kind" class="form-control">
+					            <option value="k1">제목</option>
+					            <option value="k2">내용</option>
+					            <option value="k3">번호</option>
+					        </select>
+					    </div>
+					
+					    <div style="margin-right:10px; width:200px;">
+					        <input type="text" name="search" class="form-control"
+					               placeholder="검색어를 입력하세요" value="${pager.search}">
+					    </div>
+					
+					    <div>
+					        <button type="submit" class="btn btn-primary">검색</button>
+					    </div>
+					</form>
+                    
                     <!-- Content Row -->
                     <div class="row">
                         <!-- 공지사항 목록 카드 -->
@@ -55,7 +76,7 @@
 				                        </c:forEach>
 				                    </tbody>
 				                </table>
-				                <div class="row justify-content-center">
+				                <div class="row justify-content-between">
 				                	<nav aria-label="Page navigation example">
 									  <ul class="pagination">
 									    <li class="page-item">
@@ -64,15 +85,19 @@
 									      </a>
 									    </li>
 									    <c:forEach begin="${pager.begin}" end="${pager.end}" var="i">
-										    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>									    	
+										    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${param.kind}&${param.search}">${i}</a></li>									    	
 									    </c:forEach>
 									    <li class="page-item">
-									      <a class="page-link" href="./list?page=${pager.end+1}" aria-label="Next">
+									      <a class="page-link" href="./list?page=${pager.end+1}&kind=${param.kind}&${param.search}" aria-label="Next">
 									        <span aria-hidden="true">&raquo;</span>
 									      </a>
 									    </li>
 									  </ul>
 									</nav>
+									
+									<div>
+										<a href="./add" class="btn btn-primary">글쓰기</a>
+									</div>
 				                </div>
 				            </div>
 				        </div>

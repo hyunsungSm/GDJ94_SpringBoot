@@ -4,17 +4,48 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <mapper namespace="com.winter.app.board.qna.QnaDAO">
-    	<insert id="add" parameterType="QnaDTO">
+    	<insert id="add" parameterType="QnaDTO" useGeneratedKeys="true" keyProperty="boardNum">
     		INSERT INTO qna (board_title, board_writer, board_contents, board_date, board_hit, board_ref, board_step, board_depth)
     		VALUES (#{boardTitle}, #{boardWriter}, #{boardContents}, now(), 0, 0, 0, 0)
     	</insert>
     	
+    	<update id="refUpdate" parameterType="QnaDTO">
+    		UPDATE qna SET board_ref=#{board_num} WHERE board_num=#{board_num}
+    	</update>
+    	
     	<select id="list" resultType="QnaDTO" parameterType="Pager">
-    		SELECT * FROM qna ORDER BY board_num
+    		SELECT * FROM qna 
+    		<where>
+	        <if test="kind == 'k1'">
+	            board_title LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k2'">
+	            board_contents LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k3'">
+	            board_num LIKE concat('%', #{search}, '%')
+	        </if>
+	    </where>
+    		ORDER BY board_num DESC
     		LIMIT #{startNum}, #{perPage}
+    	</select>
+    	
+    	<select id="detail" resultType="QnaDTO" parameterType="QnaDTO">
+    		SELECT * FROM qna WHERE board_num=#{boardNum}
     	</select>
     	
     	<select id="count" resultType="Long">
     		SELECT COUNT(board_num) FROM qna
+    		<where>
+	        <if test="kind == 'k1'">
+	            board_title LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k2'">
+	            board_contents LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k3'">
+	            board_num LIKE concat('%', #{search}, '%')
+	        </if>
+	    </where>
     	</select>
     </mapper>

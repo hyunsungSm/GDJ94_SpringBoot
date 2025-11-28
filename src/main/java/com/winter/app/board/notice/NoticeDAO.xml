@@ -22,12 +22,36 @@
     		WHERE board_num=#{num}
     	</update>
     	
-    	<select id="count" resultType="Long">
+    	<select id="count" resultType="Long" parameterType="Pager">
     		SELECT COUNT(board_num) FROM notice
+    		<where>
+	        <if test="kind == 'k1'">
+	            board_title LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k2'">
+	            board_contents LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k3'">
+	            board_num LIKE concat('%', #{search}, '%')
+	        </if>
+	    </where>
     	</select>
     	
     	<select id="list" resultType="NoticeDTO" parameterType="Pager">
-    		SELECT * FROM notice ORDER BY board_num DESC
-    		LIMIT #{startNum}, #{perPage}
-    	</select>
+	    SELECT * 
+	    FROM notice
+	    <where>
+	        <if test="kind == 'k1'">
+	            board_title LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k2'">
+	            board_contents LIKE concat('%', #{search}, '%')
+	        </if>
+	        <if test="kind == 'k3'">
+	            board_num LIKE concat('%', #{search}, '%')
+	        </if>
+	    </where>
+	    ORDER BY board_num DESC
+	    LIMIT #{startNum}, #{perPage}
+		</select>
     </mapper>
