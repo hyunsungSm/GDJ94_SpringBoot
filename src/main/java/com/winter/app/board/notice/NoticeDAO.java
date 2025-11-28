@@ -5,25 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.winter.app.board.BoardDAO;
 import com.winter.app.util.Pager;
 
 @Mapper
-public interface NoticeDAO {
+public interface NoticeDAO extends BoardDAO {
 
-	// 상세
-	public NoticeDTO detail(NoticeDTO noticeDTO) throws Exception;
 	
-	// 추가
-	public int add(NoticeDTO noticeDTO)throws Exception;
-	
-	// 삭제
-	public int delete(NoticeDTO noticeDTO) throws Exception;
-	
-	// 업데이트
-	public int update(Map<String, Object> map) throws Exception;
-	
-	// 리스트
-	public List<NoticeDTO> list(Pager pager)throws Exception;
-	
-	public Long count(Pager pager)throws Exception;
 }

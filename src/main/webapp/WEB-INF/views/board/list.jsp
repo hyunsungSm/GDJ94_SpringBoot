@@ -24,12 +24,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">QnA</h1>
+                        <h1 class="h3 mb-0 text-gray-800">${category}</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                     
-                    <form action="${pageContext.request.contextPath}/qna/list" method="get"
+					<form action="${pageContext.request.contextPath}/board/list" method="get"
 					      class="row mb-3" style="display:flex; align-items:center;">
 					    
 					    <div style="margin-right:10px;">
@@ -62,9 +62,6 @@
 				                            <th>작성자</th>
 				                            <th>작성일</th>
 				                            <th>조회수</th>
-				                            <th>그룹</th>
-				                            <th>순서</th>
-				                            <th>들여쓰기</th>
 				                        </tr>
 				                    </thead>
 				                    <tbody>
@@ -75,9 +72,6 @@
 				                                <td>${n.boardWriter}</td>
 				                                <td>${n.boardDate}</td>
 				                                <td>${n.boardHit}</td>
-				                                <td>${n.boardRef}</td>
-				                                <td>${n.boardStep}</td>
-				                                <td>${n.boardDepth}</td>
 				                            </tr>
 				                        </c:forEach>
 				                    </tbody>
@@ -91,10 +85,10 @@
 									      </a>
 									    </li>
 									    <c:forEach begin="${pager.begin}" end="${pager.end}" var="i">
-										    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>									    	
+										    <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${param.kind}&${param.search}">${i}</a></li>									    	
 									    </c:forEach>
 									    <li class="page-item">
-									      <a class="page-link" href="./list?page=${pager.end+1}" aria-label="Next">
+									      <a class="page-link" href="./list?page=${pager.end+1}&kind=${param.kind}&${param.search}" aria-label="Next">
 									        <span aria-hidden="true">&raquo;</span>
 									      </a>
 									    </li>

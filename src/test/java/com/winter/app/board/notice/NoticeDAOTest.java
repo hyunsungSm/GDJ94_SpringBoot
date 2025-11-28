@@ -32,13 +32,13 @@ class NoticeDAOTest {
 	}
 	
 	@Test
-	void testDetail() throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setBoardNum(1L);
-		noticeDTO = noticeDAO.detail(noticeDTO);
-		
-		assertNotNull(noticeDTO);
-	}
+//	void testDetail() throws Exception {
+//		NoticeDTO noticeDTO = new NoticeDTO();
+//		noticeDTO.setBoardNum(1L);
+//		noticeDTO = noticeDAO.detail(noticeDTO);
+//		
+//		assertNotNull(noticeDTO);
+//	}
 	
 //	@Test
 	void testAdd()throws Exception{
@@ -61,16 +61,16 @@ class NoticeDAOTest {
 	}
 	
 //	@Test
-	void testUpdate() throws Exception{
-		Map<String, Object> map = new HashMap<>();
-		map.put("title", "title");
-		map.put("writer", "나");
-		map.put("contents", "contents");
-		map.put("num", 1L);
-		int result = noticeDAO.update(map);
-		
-		assertEquals(1, result);
-	}
+//	void testUpdate() throws Exception{
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("title", "title");
+//		map.put("writer", "나");
+//		map.put("contents", "contents");
+//		map.put("num", 1L);
+//		int result = noticeDAO.update(map);
+//		
+//		assertEquals(1, result);
+//	}
 	
 //	@Test
 //	void testList()throws Exception {

@@ -9,43 +9,78 @@
     		VALUES (#{boardTitle}, #{boardWriter}, #{boardContents}, now(), 0, 0, 0, 0)
     	</insert>
     	
-    	<update id="refUpdate" parameterType="QnaDTO">
-    		UPDATE qna SET board_ref=#{board_num} WHERE board_num=#{board_num}
+    	<update id="refUpdate" parameterType="com.winter.app.board.qna.QnaDTO">
+		    UPDATE qna
+		    SET board_ref = #{boardNum}
+		    WHERE board_num = #{boardNum}
+		</update>
+		
+    	<update id="update" parameterType="java.util.Map">
+    		UPDATE notice SET board_title=#{title}, board_writer=#{writer}, board_contents=#{contents}
+    		WHERE board_num=#{num}
     	</update>
+
     	
     	<select id="list" resultType="QnaDTO" parameterType="Pager">
-    		SELECT * FROM qna 
-    		<where>
-	        <if test="kind == 'k1'">
-	            board_title LIKE concat('%', #{search}, '%')
-	        </if>
-	        <if test="kind == 'k2'">
-	            board_contents LIKE concat('%', #{search}, '%')
-	        </if>
-	        <if test="kind == 'k3'">
-	            board_num LIKE concat('%', #{search}, '%')
-	        </if>
-	    </where>
-    		ORDER BY board_num DESC
-    		LIMIT #{startNum}, #{perPage}
-    	</select>
+		    SELECT
+		        board_num    AS boardNum,
+		        board_title  AS boardTitle,
+		        board_writer AS boardWriter,
+		        board_contents AS boardContents,
+		        board_date   AS boardDate,
+		        board_hit    AS boardHit,
+		        board_ref    AS boardRef,
+		        board_step   AS boardStep,
+		        board_depth  AS boardDepth
+		    FROM qna
+		    <where>
+		        <if test="kind == 'k1'">
+		            board_title LIKE concat('%', #{search}, '%')
+		        </if>
+		        <if test="kind == 'k2'">
+		            board_contents LIKE concat('%', #{search}, '%')
+		        </if>
+		        <if test="kind == 'k3'">
+		            board_num LIKE concat('%', #{search}, '%')
+		        </if>
+		    </where>
+		    ORDER BY board_num DESC
+		    LIMIT #{startNum}, #{perPage}
+		</select>
+
     	
-    	<select id="detail" resultType="QnaDTO" parameterType="QnaDTO">
-    		SELECT * FROM qna WHERE board_num=#{boardNum}
-    	</select>
+   		<select id="detail" resultType="QnaDTO" parameterType="QnaDTO">
+		    SELECT
+		        board_num    AS boardNum,
+		        board_title  AS boardTitle,
+		        board_writer AS boardWriter,
+		        board_contents AS boardContents,
+		        board_date   AS boardDate,
+		        board_hit    AS boardHit,
+		        board_ref    AS boardRef,
+		        board_step   AS boardStep,
+		        board_depth  AS boardDepth
+		    FROM qna
+		    WHERE board_num = #{boardNum}
+		</select>
+   	
+    	<update id="stepUpdate" parameterType="QnaDTO">
+    		UPDATE qna SET board_step=board_step+1 
+    		WHERE board_ref=#{boardRef} AND board_step > #{boardRef}
+    	</update>
     	
     	<select id="count" resultType="Long">
     		SELECT COUNT(board_num) FROM qna
     		<where>
-	        <if test="kind == 'k1'">
-	            board_title LIKE concat('%', #{search}, '%')
-	        </if>
-	        <if test="kind == 'k2'">
-	            board_contents LIKE concat('%', #{search}, '%')
-	        </if>
-	        <if test="kind == 'k3'">
-	            board_num LIKE concat('%', #{search}, '%')
-	        </if>
-	    </where>
+		        <if test="kind == 'k1'">
+		            board_title LIKE concat('%', #{search}, '%')
+		        </if>
+		        <if test="kind == 'k2'">
+		            board_contents LIKE concat('%', #{search}, '%')
+		        </if>
+		        <if test="kind == 'k3'">
+		            board_num LIKE concat('%', #{search}, '%')
+		        </if>
+	    	</where>
     	</select>
     </mapper>

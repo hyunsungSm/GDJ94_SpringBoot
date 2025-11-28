@@ -25,7 +25,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">글 등록</h1>
+                        <h1 class="h3 mb-0 text-gray-800">글 수정</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -33,7 +33,7 @@
                     <!-- Content Row -->
                     <div class="row" style="display:flex; justify-content:center; width: 100%;">
                     <!-- 생성한 contents 작성 -->
-                    	<form action="/qna/add" method="post" style="width: 100%">
+                    	<form action="/notice/add" method="post" style="width: 100%">
 						  <div class="form-group">
 						    <label for="formGroupExampleInput">제목</label>
 						    <input type="text" class="form-control" name="boardTitle">

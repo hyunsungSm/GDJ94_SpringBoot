@@ -24,7 +24,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">상세정보</h1>
+                        <h1 class="h3 mb-0 text-gray-800">${category} 상세정보</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -48,12 +48,22 @@
 					      ${n.boardContents}
 					    </div>
 					
+						<div class="card-footer">
+							<c:if test="${category ne 'Notice'}"></c:if>
+							<a href="/reply?"></a>
+						</div>
+						
 					    <!-- 버튼 -->
 					    <div style="display:flex; justify-content:right; gap:10px; margin-top:20px;">
 					      <button class="btn btn-secondary"
-					              onclick="location.href='/notice/list'">
+					              onclick="location.href='/qna/list'">
 					          목록
 					      </button>
+					      <button class="btn btn-primary"
+						        onclick="location.href='${pageContext.request.contextPath}/qna/update?boardNum=${n.boardNum}'">
+						    수정
+						</button>
+
 					    </div>
 					
 					  </div>
