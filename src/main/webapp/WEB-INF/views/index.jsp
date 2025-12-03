@@ -32,13 +32,14 @@
                     <!-- Content Row -->
                     <div class="row">
                     <!-- 생성한 contents 작성 -->
+                    	<a href="/users/register">회원가입</a>
                     </div>
                     
-                  </div>
-               	<!-- /.container-fluid -->
+                </div>
+            <!-- /.container-fluid -->
 
-           	 </div>
-             <!-- End of Main Content -->
+        </div>
+            <!-- End of Main Content -->
             
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -53,5 +54,6 @@
 	</div>
 	
 <c:import url="/WEB-INF/views/template/foot.jsp"></c:import>
+<script src="/js/index/index.js"></script>
 </body>
 </html>

@@ -83,4 +83,10 @@
 		        </if>
 	    	</where>
     	</select>
+    	
+    	<select id="fileDetail" parameterType="BoardFileDTO" resultType="BoardFileDTO">
+			SELECT * FROM qna_file WHERE file_num=#{fileNum}
+		</select>
+    	
+    	
     </mapper>

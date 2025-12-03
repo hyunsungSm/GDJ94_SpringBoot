@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.winter.app.board.BoardDTO;
+import com.winter.app.board.BoardFileDTO;
 import com.winter.app.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -83,5 +84,9 @@ public class QnaController {
 	    return "board/update"; 
 	}
 	
+	   @GetMapping("fileDown")
+	   public void fileDown(BoardFileDTO boardFileDTO) throws Exception{
+		   boardFileDTO = qnaService.fileDetail(boardFileDTO);
+	   }
 	
 }

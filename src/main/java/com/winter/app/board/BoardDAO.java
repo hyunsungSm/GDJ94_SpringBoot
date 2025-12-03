@@ -22,4 +22,10 @@ public interface BoardDAO {
 	public List<BoardDTO> list(Pager pager)throws Exception;
 	
 	public Long count(Pager pager)throws Exception;
+	
+	public int fileAdd(BoardFileDTO boardFileDTO)throws Exception;
+	
+	public int fileDelete(BoardDTO boardDTO) throws Exception;
+	
+	public BoardFileDTO fileDetail(BoardFileDTO boardFileDTO) throws Exception;
 }
