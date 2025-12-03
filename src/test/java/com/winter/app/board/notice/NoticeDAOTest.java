@@ -10,8 +10,11 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
+@Transactional
 class NoticeDAOTest {
 
 	@Autowired
@@ -41,6 +44,7 @@ class NoticeDAOTest {
 //	}
 	
 //	@Test
+	@Rollback(false)
 	void testAdd()throws Exception{
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setBoardTitle("무탑못미는");
