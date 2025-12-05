@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">회원가입</h1>
+                    <h1 class="h3 mb-0 text-gray-800">로그인</h1>
                 </div>
 
                 <!-- Content Row -->
@@ -36,63 +35,33 @@
                     <div class="col-lg-6 mt-5">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">회원 정보 입력</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">로그인</h6>
                             </div>
                             <div class="card-body">
-
-                                <!-- modelAttribute 이름: usersDTO -->
-                                <form:form modelAttribute="usersDTO"
-                                           action="/users/register"
-                                           method="post"
-                                           enctype="multipart/form-data">
-
+                                <form action="/users/login" method="post">
                                     <div class="form-group">
                                         <label for="username">아이디</label>
-                                        <form:input path="username" cssClass="form-control" id="username" />
-                                        <form:errors path="username" cssClass="text-danger small" />
+                                        <input type="text" class="form-control" name="username" id="username" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password">비밀번호</label>
-                                        <form:password path="password" cssClass="form-control" id="password" />
-                                        <form:errors path="password" cssClass="text-danger small" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="email">이메일</label>
-                                        <form:input path="email" cssClass="form-control" id="email" />
-                                        <form:errors path="email" cssClass="text-danger small" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="name">이름</label>
-                                        <form:input path="name" cssClass="form-control" id="name" />
-                                        <form:errors path="name" cssClass="text-danger small" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="phone">전화번호</label>
-                                        <form:input path="phone" cssClass="form-control" id="phone" />
-                                        <form:errors path="phone" cssClass="text-danger small" />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="birth">생년월일</label>
-                                        <form:input path="birth" type="date" cssClass="form-control" id="birth" />
-                                        <form:errors path="birth" cssClass="text-danger small" />
+                                        <input type="password" class="form-control" name="password" id="password" required>
                                     </div>
 
                                     <div class="form-group d-flex justify-content-end gap-2 mt-4">
-                                        <button type="submit" class="btn btn-primary">회원가입</button>
-                                    </div>
+									    <button type="submit" class="btn btn-primary" style="margin-right:8px;">로그인</button>
+									    <a href="/users/register" class="btn btn-secondary">
+									        회원가입
+									    </a>
+									</div>
 
                                     <c:if test="${not empty error}">
                                         <div class="alert alert-danger mt-3" role="alert">
                                             ${error}
                                         </div>
                                     </c:if>
-                                </form:form>
-
+                                </form>
                             </div>
                         </div>
                     </div>

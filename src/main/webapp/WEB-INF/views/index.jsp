@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,23 @@
                     
                     <!-- Content Row -->
                     <div class="row">
+                    
+                    <spring:message code="hi"></spring:message>
+                    <spring:message code="hello" text="키가없을때 기본메세지"></spring:message>
                     <!-- 생성한 contents 작성 -->
-                    	<a href="/users/register">회원가입</a>
+                    <c:if test="${not empty user}">
+                    	<h1>Login 성공</h1>
+                    <spring:message code="message.welcome" arguments="${user.username}, ${user.birth}" argumentSeparator=","></spring:message>                    
+                    </c:if>
+                    
+                    <c:if test="${empty user}">
+                    	<li class="nav-item dropdown no-arrow mx-1">
+		                    <a class="nav-link" href="/users/login" id="alertsDropdown" role="button"
+		                        aria-haspopup="true" aria-expanded="false">
+		                        <i class="fas fa-bell fa-fw"></i>
+		                    </a>
+	                    </li>
+                    </c:if>
                     </div>
                     
                 </div>
@@ -43,7 +59,7 @@
             
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
+                <div class="container my-auto">022
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
                     </div>

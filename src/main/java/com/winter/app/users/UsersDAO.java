@@ -10,4 +10,6 @@ public interface UsersDAO {
 	public int update(UsersDTO usersDTO) throws Exception;
 	
 	public int delete(UsersDTO usersDTO) throws Exception;
+	
+	public UsersDTO detail(UsersDTO usersDTO) throws Exception;
 }

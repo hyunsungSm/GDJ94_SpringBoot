@@ -9,12 +9,27 @@
     		VALUES (#{username}, #{password}, #{name}, #{email}, #{phone}, #{birth})
     	</insert>
     	
-    	<update id="update" parameterType="UsersDTO">
-    		UPDATE users SET username=#{username}, password=#{password}, name=#{name}, email=#{email}, phone=#{phone}, birth=#{birth}
-    		WHERE username=#{username}
-    	</update>
-    	
     	<delete id="delete" parameterType="UsersDTO">
-    		DELETE FROM users WHERE username=${username}
+    		DELETE FROM users WHERE username=#{username}
     	</delete>
+    	
+    	<select id="detail" parameterType="String" resultType="UsersDTO">
+		    SELECT 
+		        username,
+		        password,
+		        name,
+		        email,
+		        phone,
+		        birth
+		    FROM users
+		    WHERE username = #{username}
+		</select>
+		
+		<update id="update" parameterType="UsersDTO">
+			UPDATE users 
+			<set>
+				name=#{name},
+				email=#{email}
+			</set>
+		</update>
     </mapper>

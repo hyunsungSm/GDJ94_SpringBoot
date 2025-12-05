@@ -47,28 +47,17 @@
                                            enctype="multipart/form-data">
 
                                     <div class="form-group">
-                                        <label for="username">아이디</label>
-                                        <form:input path="username" cssClass="form-control" id="username" />
-                                        <form:errors path="username" cssClass="text-danger small" />
+                                        <label for="name">이름</label>
+                                        <form:input path="name" cssClass="form-control" id="name" />
+                                        <form:errors path="name" cssClass="text-danger small" />
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="password">비밀번호</label>
-                                        <form:password path="password" cssClass="form-control" id="password" />
-                                        <form:errors path="password" cssClass="text-danger small" />
-                                    </div>
-
+                                    
                                     <div class="form-group">
                                         <label for="email">이메일</label>
                                         <form:input path="email" cssClass="form-control" id="email" />
                                         <form:errors path="email" cssClass="text-danger small" />
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="name">이름</label>
-                                        <form:input path="name" cssClass="form-control" id="name" />
-                                        <form:errors path="name" cssClass="text-danger small" />
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="phone">전화번호</label>
@@ -83,7 +72,7 @@
                                     </div>
 
                                     <div class="form-group d-flex justify-content-end gap-2 mt-4">
-                                        <button type="submit" class="btn btn-primary">회원가입</button>
+                                        <button type="submit" class="btn btn-primary">수정</button>
                                     </div>
 
                                     <c:if test="${not empty error}">

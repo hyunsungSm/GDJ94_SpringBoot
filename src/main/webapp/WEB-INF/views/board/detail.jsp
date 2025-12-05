@@ -93,5 +93,6 @@
    </div>
    
 <c:import url="/WEB-INF/views/template/foot.jsp"></c:import>   
+<script type="text/javascript" src="/js/product/product_comment.js"></script>
 </body>
 </html>
