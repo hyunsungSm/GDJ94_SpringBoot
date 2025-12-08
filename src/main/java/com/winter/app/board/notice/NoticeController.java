@@ -75,7 +75,7 @@ public class NoticeController {
        if (bindingResult.hasErrors()) {
            return "board/add";   
        }
-//     int result = noticeService.add(noticeDTO, attach);
+//       int result = noticeService.add(noticeDTO, attach);
 
        return "redirect:./list";
    }
