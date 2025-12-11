@@ -12,4 +12,8 @@ public interface UsersDAO {
 	public int delete(UsersDTO usersDTO) throws Exception;
 	
 	public UsersDTO detail(UsersDTO usersDTO) throws Exception;
+	
+	public UsersDTO findByUsername(String username) throws Exception;
+
+	public void userFileAdd(UsersFileDTO usersFileDTO);
 }

@@ -2,6 +2,7 @@ package com.winter.app.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -18,6 +19,9 @@ public class UsersService {
 	
 	@Value("${app.upload.users}")
 	private String uploadPath;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public boolean getError(UsersDTO usersDTO, BindingResult bindingResult) {
 		// check : true -> 검증 실패, error 존재 
@@ -41,6 +45,9 @@ public class UsersService {
 	}
 	
 	public int register(UsersDTO usersDTO) throws Exception{
+		
+		usersDTO.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
+		
 		return usersDAO.register(usersDTO);
 	}
 	

@@ -32,4 +32,19 @@
 				email=#{email}
 			</set>
 		</update>
+		
+		<select id="findByUsername" parameterType="String" resultMap="UserWithRoles">
+		    SELECT 
+		        u.username,
+		        u.password,
+		        u.name,
+		        u.email,
+		        u.phone,
+		        u.birth,
+		        r.role_name
+		    FROM users u
+		    LEFT JOIN user_role ur ON u.username = ur.username
+		    LEFT JOIN role r ON ur.role_num = r.role_num
+		    WHERE u.username = #{username}
+		</select>
     </mapper>

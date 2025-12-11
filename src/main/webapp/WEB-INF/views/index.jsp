@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,20 +36,31 @@
                     
                     <spring:message code="hi"></spring:message>
                     <spring:message code="hello" text="키가없을때 기본메세지"></spring:message>
-                    <!-- 생성한 contents 작성 -->
-                    <c:if test="${not empty user}">
-                    	<h1>Login 성공</h1>
-                    <spring:message code="message.welcome" arguments="${user.username}, ${user.birth}" argumentSeparator=","></spring:message>                    
-                    </c:if>
-                    
-                    <c:if test="${empty user}">
+                    <sec:authorize access="isAuthenticated()">
+				    <h1>Login 성공</h1>
+				
+				    <sec:authentication property="principal" var="user" />
+				
+				    <h1>${user.username}</h1>
+				    <h1>${user.password}</h1>
+				
+				    <h3>${user.phone}</h3>
+				
+				    <spring:message code="message.welcome"
+				                    arguments="${user.username}, ${user.birth}"
+				                    argumentSeparator="," />
+					</sec:authorize>
+
+					<sec:authorize access="!isAuthenticated()">
+						<h1>로그인 필요</h1>
+						<a href="/oauth2/authorization/kakao">카카오 로그인</a>
                     	<li class="nav-item dropdown no-arrow mx-1">
 		                    <a class="nav-link" href="/users/login" id="alertsDropdown" role="button"
 		                        aria-haspopup="true" aria-expanded="false">
 		                        <i class="fas fa-bell fa-fw"></i>
 		                    </a>
 	                    </li>
-                    </c:if>
+					</sec:authorize>                    
                     </div>
                     
                 </div>

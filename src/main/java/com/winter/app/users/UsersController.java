@@ -1,6 +1,10 @@
 package com.winter.app.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,7 +44,7 @@ public class UsersController {
 	}
 	
 	@GetMapping("mypage")
-	public void detail (UsersDTO usersDTO, Model model) throws Exception {
+	public void detail (@AuthenticationPrincipal UsersDTO usersDTO, Model model) throws Exception {
 		usersDTO = usersService.detail(usersDTO);
 		model.addAttribute("user", model);
 	}
@@ -49,14 +53,6 @@ public class UsersController {
 	public void login() throws Exception{
 		
 	}
-	@PostMapping("login")
-	public String login(UsersDTO usersDTO, HttpSession session) throws Exception{
-		usersDTO = usersService.detail(usersDTO);
-		
-		session.setAttribute("user", usersDTO);
-		
-		return "redirect:/";
-	}
 	
 	@GetMapping("update")
 	public void update(HttpSession session, Model model) throws Exception{
@@ -64,12 +60,21 @@ public class UsersController {
 	}
 	
 	@PostMapping("update")
-	public String update(@Validated(RegisterGroup.class) UsersDTO usersDTO, BindingResult bindingResult) throws Exception{
+	public String update(@Validated(RegisterGroup.class) UsersDTO usersDTO, BindingResult bindingResult, Authentication authentication) throws Exception{
 		if (bindingResult.hasErrors()) {
 			return "users/update";
 		}
 		
-		return "redirect:./mypage";
+		usersDTO.setUsername(authentication.getName());
+		
+		int result = usersService.update(usersDTO);
+		
+		if (result > 0) {
+			UsernamePasswordAuthenticationToken to = new UsernamePasswordAuthenticationToken(bindingResult, authentication.getCredentials(), authentication.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(to);
+		}
+		
+		return "redirect:/";
 	}
 	
 	

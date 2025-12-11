@@ -1,5 +1,6 @@
 package com.winter.app.board.notice;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -70,12 +71,15 @@ public class NoticeController {
    @PostMapping("add")
    public String add(@ModelAttribute("dto") @Valid NoticeDTO noticeDTO,
                      BindingResult bindingResult,
-                     MultipartFile [] attach)throws Exception{
+                     MultipartFile [] attach, Principal principal)throws Exception{
 
        if (bindingResult.hasErrors()) {
            return "board/add";   
        }
-//       int result = noticeService.add(noticeDTO, attach);
+       
+        principal.getName();
+       
+       int result = noticeService.add(noticeDTO, attach);
 
        return "redirect:./list";
    }
